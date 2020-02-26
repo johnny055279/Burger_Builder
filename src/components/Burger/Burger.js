@@ -10,7 +10,7 @@ const burger = (props) => {
     // ingredientsKey means meat, bacon, salad...etc, not the value.
     // map() executes a function on each element in the input array.
 
-    const transformIngredients = Object.keys(props.ingredients).map(ingredientsKey => {
+    let transformIngredients = Object.keys(props.ingredients).map(ingredientsKey => {
         
         // Transform this string value into an array with many elements.
         // Array gives a length which should be the amount of the ingredients.
@@ -20,7 +20,15 @@ const burger = (props) => {
         return [...Array(props.ingredients[ingredientsKey])].map((_, index) => {
             return <BurgerIngredient key = {ingredientsKey + index} type = {ingredientsKey}/>;
         });
-    });
+
+        // reudce(previousValue, currentValue) allows us to transform an array into something else
+        // Use concat to combine array
+
+    }).reduce((arr, el) => {return arr.concat(el)}, []);
+
+    if (transformIngredients.length === 0) {
+        transformIngredients = <p>Pleast start adding ingredients!</p>
+    }
 
     console.log(transformIngredients);
 
