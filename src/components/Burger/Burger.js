@@ -24,7 +24,7 @@ const burger = (props) => {
         // reudce(previousValue, currentValue) allows us to transform an array into something else
         // Use concat to combine array
 
-    }).reduce((arr, el) => {return arr.concat(el)}, []);
+    }).reduce((arr, element) => {return arr.concat(element)}, []);
 
     if (transformIngredients.length === 0) {
         transformIngredients = <p>Pleast start adding ingredients!</p>
