@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
-
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 // Set the prices of ingredients
 const INGREDIENT_PRICES = {
@@ -22,6 +23,7 @@ class BurgerBuilder extends Component {
         },
         totalPrice: 4,
         puchasable: false,
+        orderButtonClicked: false,
     }
 
     updatePurchaseState (ingredients) {
@@ -70,6 +72,18 @@ class BurgerBuilder extends Component {
         this.updatePurchaseState(updatedIngredients);
     }
 
+    orderButtonClickedHandler = () => {
+        this.setState({orderButtonClicked: true});
+    }
+
+    modalClickedHandler = () => {
+        this.setState({orderButtonClicked: false});
+    }
+
+    continuePurchasingHandler = () => {
+        alert('You Continue!');
+    }
+
 
     render() {
 
@@ -84,12 +98,20 @@ class BurgerBuilder extends Component {
         // {salad: true, meat: false, ...etc}
         return (
             <>
+            <Modal show = {this.state.orderButtonClicked} modalClosed = {this.modalClickedHandler}>
+                <OrderSummary ingredients = {this.state.ingredients}
+                              purchaseCancelled = {this.modalClickedHandler}
+                              continuePurchasing = {this.continuePurchasingHandler}/>
+            </Modal>
+
             <Burger ingredients={this.state.ingredients}/>
+
             <BuildControls ingredientAdd={this.addIngredientsHandler} 
                            ingredientRemove = {this.removeIngredientsHandler}
                            disableButton = {disabledInfo}
                            price = {this.state.totalPrice}
-                           purchasable = {this.state.puchasable}/>
+                           purchasable = {this.state.puchasable}
+                           ordered = {this.orderButtonClickedHandler}/>
             </>
         );
     }
