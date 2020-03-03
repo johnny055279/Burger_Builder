@@ -16,6 +16,7 @@ const orderSummery = (props) => {
         <ul>
             {ingredientSummary}
         </ul>
+    <p><strong>Total Price: {props.price}</strong></p>
         <p>Continue to checkout?</p>
 
         {/* Make sure the buttonType value is same as Button.module.css name*/}

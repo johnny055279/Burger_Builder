@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 // The css file name must be [name].module.css
 import classes from './Layout.module.css';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
+import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
-const layout = ( props ) => (
+class Layout extends Component {
 
-    //using high order component(hoc)
-    <>
-    <div>Toolbar, SideDrawer, Backdrop</div>
-    <main className={classes.Content}>
-        {props.children}
-    </main>
-    </>
-);
+    state = {
+        showSideDrawer: false
+    }
 
-export default layout;
+    sideDrawerCloseHandler = () => {
+        this.setState({showSideDrawer: false})
+    }
+
+    render() {
+        return(
+            //using high order component(hoc)
+            <>
+            <Toolbar/>
+            <SideDrawer open = {this.state.showSideDrawer} closed = {this.sideDrawerCloseHandler}/>
+            <main className={classes.Content}>
+                {this.props.children}
+            </main>
+            </>
+        )
+    }
+}
+
+export default Layout;
