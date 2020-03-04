@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Burger from '../../components/Burger/Burger';
-import BuildControls from '../../components/Burger/BuildControls/BuildControls'
-import Modal from '../../components/UI/Modal/Modal'
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import axiosInstance from '../../axios-orders';
 
 // Set the prices of ingredients
 const INGREDIENT_PRICES = {
@@ -81,7 +82,27 @@ class BurgerBuilder extends Component {
     }
 
     continuePurchasingHandler = () => {
-        alert('You Continue!');
+
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                name: 'Johnny',
+                address: {
+                    street: 'TestStreet 1',
+                    zipcode: '5564',
+                    country: 'Taiwan',
+                },
+                email: 'Test.gmail.com'
+            },
+            deliveryMethod: 'Fastest'
+        }
+
+        // .json just a format with firebase.com
+        axiosInstance.post('/orders.json', order).then(response => {
+            console.log(response)
+            // this.setState(response)
+        }).catch(error => console.log(error));
     }
 
 

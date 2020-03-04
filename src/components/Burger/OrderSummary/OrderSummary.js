@@ -5,9 +5,9 @@ class orderSummery extends Component {
 
     // By using componentWillUpdate we see even the orderSummery not show in the page, it still rerender when click any button.
     // So we chould improve performance by editing [Modal] because it is unnecessary to update.
-    componentWillUpdate() {
-        console.log('[orderSummery] will update');
-    }
+    // componentWillUpdate() {
+    //     console.log('[orderSummery] will update');
+    // }
 
     render() {
 
