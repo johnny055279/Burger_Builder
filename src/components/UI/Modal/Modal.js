@@ -7,7 +7,7 @@ class modal extends Component {
 
     // Let Modal re-render only when user click the order button.
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.show !== this.props.show
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
 
     render() {
