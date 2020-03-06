@@ -3,7 +3,9 @@
 .Text {
   font: 2em 'Roboto', sans-serif;
   margin-bottom: 40px;
-  text-align: center;
+  position: fixed;
+  left: 47.5%;
+  top: 35%;
 }
 
 .Loading {
@@ -16,8 +18,8 @@
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
   position: fixed;
-  left: 45%;
-  top: 45%;
+  left: 50%;
+  top: 50%;
 }
 
 @keyframes spin {
